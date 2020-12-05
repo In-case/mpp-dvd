@@ -21,21 +21,9 @@ client.on('hi', () => {
 
 cursor = setInterval(() => {dvd.update()}, 25);
 
-client.on('a', msg => {
-    let args = msg.a.split(' ');
-    let cmd = args[0].toLowerCase();
-    let argcat = msg.a.substring(cmd.length).trim();
-    if (cmd == "dvd!stats") {
-        client.sendArray([{m:'a', message:`┐ Corner hits: ${dvd.stats.c} | Wall hits: ${dvd.stats.w}`}]);
-    }
-});
 
 dvd.onUpdate = () => {
     client.sendArray([{m:'m', x: dvd.pos.x, y: dvd.pos.y}]);
-}
-
-dvd.onCornerHit = () => {
-    client.sendArray([{m:'a', message:`Corner hit!`}]);
 }
 
 dvd.save = () => {
@@ -61,11 +49,11 @@ cursorOff = () => {
 /*
 cursorCollide = client.on('m', p => {
     if (p._id == client.getOwnParticipant()._id) return;
-    if ((pos.x > p.x - 5 && vel.x > 0) || (pos.x < p.x + 5 && vel.x < 0)) {
+    if ((pos.x > p.x - 5 && vel.x > 0) || (pos.x < p.x + 9 && vel.x < 0)) {
         vel.x = -vel.x;
     }
 
-    if ((pos.y > p.y - 5 && vel.y > 0) || (pos.y < p.y + 5 && vel.y < 0)) {
+    if ((pos.y > p.y - 5 && vel.y > 0) || (pos.y < p.y + 9 && vel.y < 0)) {
         vel.y = -vel.y;
     }
 });
